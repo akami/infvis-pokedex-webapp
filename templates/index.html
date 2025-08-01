@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pokémon Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/pokemon_section.css')}}">
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.0/topojson.min.js"></script>
+</head>
+
+<body>
+    <h1>Pokémon Exploration Dashboard</h1>
+    <p style="text-align: center;">Ana Fahlböck, Jonathan Højlev, Katharina Höckner</p>
+
+    <div class="dashboard">
+        <!-- LEFT: All the locatons maps -->
+        <div class="left-panel">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="text-align: left;">
+                        <button id="backButton" style="display: none;">Back to World Map</button>
+                    </td>
+                    <td style="text-align: right;">
+                        <span id="exploreText" style="display: none;">Explore where Pokémon are found. Higher opacities are more common.</span>
+                    </td>
+                </tr>
+            </table>
+            <p id="mapNotice" class="map-notice" style="display: none;">
+                Note: Not all regions are available yet. Please follow the white highlights to explore the map.
+            </p>
+            <div id="svg_kanto_map" class="svg_wrapper small"></div>
+            <div id="location_pokemon_list"></div>
+        </div>
+
+        <!--Histogram and other informations -->
+        <div class="right-panel">
+            <div class="search-container">
+                <input id="searchInput" type="text" placeholder="Search Pokémon..." autocomplete="off">
+                <button onclick="searchPokemon()">Search</button>
+                <ul id="suggestions" class="suggestions-list"></ul>
+            </div>
+            <div id="pokemon_section"></div>
+            <div id="tooltip" class="tooltip" style="display: none;"></div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/encounter_section.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pokemon_section.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/search.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/routes.js') }}"></script>
+
+    <script>
+        // load world map
+        loadSVG("world.svg", "small");
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,393 @@
+:root {
+    --division_width: 400px;
+
+    /* fonts */
+    --font-heading: 'Press Start 2P', monospace;
+    --font-body: 'Space Mono', monospace;
+
+    /* color palette */
+    --color-primary: #5F7A57;
+    --color-accent: #D17C6A;
+    --color-highlight: #E6B85C;
+    --color-muted: #CFC7AC;
+    --color-surface: #A7B56B;
+    --color-surface-alt: #e9e5c9;
+    --color-background: #EFD6A7;
+    --color-dark: #2B3B3E;
+
+    /* theming */
+    --color-text: var(--color-dark);
+    --color-heading: var(--color-primary);
+    --color-link: #386C74;
+    --color-link-hover: #3C5AA6;
+    --color-border: var(--color-primary);
+    --color-card: var(--color-surface);
+    --color-button: var(--color-accent);
+    --color-button-hover: var(--color-highlight);
+    --color-danger: #3C243D;
+    --color-warning: #FFCB05;
+
+
+    /* pokemon type colors */
+    --type-bug: #A8B820;
+    --type-dragon: #7038F8;
+    --type-electric: #F8D030;
+    --type-fighting: #C03028;
+    --type-fire: #F08030;
+    --type-flying: #A890F0;
+    --type-ghost: #705898;
+    --type-grass: #78C850;
+    --type-ground: #E0C068;
+    --type-ice: #98D8D8;
+    --type-normal: #A8A878;
+    --type-poison: #A040A0;
+    --type-psychic: #F85888;
+    --type-rock: #B8A038;
+    --type-water: #6890F0;
+}
+
+/* ========== Global Layout ========== */
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+.heading,
+.title {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-heading);
+    text-shadow: 1px 1px var(--color-muted);
+}
+
+h1 {
+    font-size: 16px;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+a {
+    color: var(--color-link);
+}
+
+a:hover {
+    color: var(--color-link-hover);
+}
+
+.label {
+    font-size: 10px;
+    letter-spacing: 0.02em;
+    font-family: var(--font-body);
+}
+
+/* ========== Layout Panels ========== */
+
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    height: calc(100vh - 100px);
+    box-sizing: border-box;
+}
+
+.left-panel,
+.right-panel {
+    flex: 1;
+    background-color: var(--color-card);
+    border-radius: 12px;
+    box-shadow: 0 0 10px var(--color-muted);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.svg_wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.svg_wrapper svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ========== Containers ========== */
+
+.main_container,
+.dd_container {
+    float: left;
+    align-content: center;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px,
+        var(--color-muted) 0 0 0 1px inset;
+}
+
+.container_l,
+.container_r,
+.container_tool {
+    float: left;
+    display: table-cell;
+    vertical-align: top;
+    padding: 10px;
+    font-size: large;
+}
+
+.container_l {
+    width: 800px;
+}
+
+.container_r {
+    width: 10%;
+    height: 10%;
+}
+
+.container_tool {
+    width: auto;
+    margin-top: -100px;
+}
+
+.title_div {
+    margin: 5px;
+}
+
+.svg_line_plot {
+    float: left;
+    align-content: center;
+    height: 500px;
+    width: 71.2%;
+    margin: 0 0 10px 5px;
+    padding-left: 3%;
+    font-size: large;
+    box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px,
+        var(--color-muted) 0 0 0 1px inset;
+    opacity: 0;
+}
+
+/* ========== Charts & Axes ========== */
+
+#histogram,
+#svg_line_plot {
+    flex-shrink: 0;
+    margin-top: 20px;
+}
+
+.subtitle text {
+    font-size: 10px;
+    text-decoration: underline;
+    fill: gray;
+}
+
+path.line {
+    fill: none;
+    stroke: var(--color-link);
+    stroke-width: 3px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: var(--color-dark);
+    shape-rendering: geometricPrecision;
+}
+
+text.title {
+    font-size: 10px;
+    fill: black;
+}
+
+/* ========== Inputs ========== */
+
+select.dropdown {
+    width: 100%;
+    padding: 5px;
+    font-family: var(--font-body);
+}
+
+/* ========== Search ========== */
+.search-container {
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    padding: 10px;
+    width: 250px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    background-color: #fefefe;
+    border: 3px solid #444;
+    outline: none;
+    box-shadow: inset -2px -2px 0 #999, inset 2px 2px 0 #ccc;
+    color: #222;
+}
+
+button {
+    padding: 10px;
+    margin-left: 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    background-color: #e0e0e0;
+    border: 3px solid #444;
+    cursor: pointer;
+    box-shadow: inset -2px -2px 0 #999, inset 2px 2px 0 #ccc;
+    color: #222;
+}
+
+button:hover {
+    background-color: #d0d0d0;
+}
+
+.suggestions-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-74%);
+    width: 250px;
+    background: #fefefe;
+    border: 3px solid #444;
+    z-index: 10;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: #222;
+    box-shadow: inset -2px -2px 0 #999, inset 2px 2px 0 #ccc;
+}
+
+.suggestions-list li {
+    padding: 8px 10px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.suggestions-list li:hover {
+    background-color: #d0d0d0;
+}
+
+.suggestions-list:empty {
+    display: none;
+}
+
+/* ========== Highlighted Regions ========== */
+
+.clickable-region {
+    fill: var(--color-muted) !important;
+    fill-opacity: 0.3 !important;
+    transition: all 0.3s ease;
+    pointer-events: all;
+}
+
+.highlighted-region {
+    stroke: var(--color-highlight) !important;
+    stroke-width: 1px !important;
+    stroke-linejoin: round !important;
+    stroke-linecap: round !important;
+    fill: var(--color-highlight) !important;
+    /* fill-opacity: 0.25 !important; */
+    filter: drop-shadow(0 0 6px var(--color-highlight));
+    transition: all 0.3s ease;
+}
+
+.d3-tip {
+    line-height: 1.4;
+    font-family: var(--font-body);
+    font-size: 12px;
+    padding: 8px 12px;
+    background: var(--color-surface);
+    color: var(--color-dark);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    pointer-events: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.flash-region {
+    animation: pulse 1s ease;
+}
+@keyframes pulse {
+    0% { stroke-width: 1px; }
+    50% { stroke-width: 5px; }
+    100% { stroke-width: 1px; }
+}
+
+.encounter_locations {
+    font-family: var(--font-body);
+    font-size: 11px;
+    margin-top: 12px;
+    width: 100%;
+    text-align: left;
+}
+
+.encounter_locations h3 {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    margin-bottom: 6px;
+    color: var(--color-heading);
+    text-transform: uppercase;
+}
+
+.encounter_locations ul {
+    padding-left: 14px;
+    margin: 0;
+}
+
+.encounter_locations li {
+    margin-bottom: 4px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.encounter_locations li:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+}
+
+
+/* ========== World map  ========== */
+
+.corner-marker {
+  stroke: purple;
+  stroke-width: 5;
+  fill: none;
+  pointer-events: none;
+  stroke-linecap: round;
+}
+
+.map-notice {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--color-dark);
+    background-color: var(--color-muted);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+
+/* ========== Back Button  ========== */
+
+#backButton {
+    width: 200px;
+    margin-left:0;
+}
+
