@@ -1,5 +1,8 @@
 # InfVis Pokédex WebApp
 
+
+<img width="938" height="549" alt="Screenshot 2025-08-01 at 12-57-01 Pokémon Dashboard - Google Präsentationen" src="https://github.com/user-attachments/assets/31a89c20-87b1-41d5-8f7d-7fb938bf6a09" />
+
 A full-stack university project for the **Information Visualization (InfVis)** course at TU Wien.  
 The application visualizes Pokémon encounters and stats in an interactive way using a web-based frontend and a structured backend service.  
 This was a **collaborative project of 3 team members**.
